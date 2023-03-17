@@ -1,5 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
 
 function CheckBox(props) {
   return (
@@ -9,27 +9,56 @@ function CheckBox(props) {
     </>
   )
 }
+
 function App() {
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
+  const [timer, setTimer] = useState(10);
+  function updateTime() {
+    setTime(new Date().toLocaleTimeString());
+  }
+  function updateTimer() {
+    if (timer >= 0) {
+      setTimer(timer - 1);
+    }
+  }
+  useEffect(() => {
+    if (timer !== 0) {
+      setTimeout(updateTime, 1000);
+      setTimeout(updateTimer, 1000);
+    }
+  })
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src='logo.png' className="App-logo" alt="logo" />
-      </header>
-      <main>
-        <h1> THINGS TO DO </h1>
-        <p>During bootcamp in sanbercode</p>
-        <hr />
-        <CheckBox name="git_cli" label="Belajar GIT & CLI" />
-        <hr />
-        <CheckBox name="html_css" label="Belajar HTML & CSS" />
-        <hr />
-        <CheckBox name="js" label="Belajar JavaScript" />
-        <hr />
-        <CheckBox name="react_basic" label="Belajar ReactJS Dasar" />
-        <hr />
-        <CheckBox name="react_advance" label="Belajar ReactJS Advance" />
-      </main>
-    </div>
+    <>
+      {
+        timer === 0 ?
+          null
+          :
+          <div className='time'>
+            <p>Now At - {time}</p>
+            <p>Countdown: {timer}</p>
+          </div>
+      }
+
+      <div className="App">
+        <header className="App-header">
+          <img src='logo.png' className="App-logo" alt="logo" />
+        </header>
+        <main>
+          <h1> THINGS TO DO </h1>
+          <p>During bootcamp in sanbercode</p>
+          <hr />
+          <CheckBox name="git_cli" label="Belajar GIT & CLI" />
+          <hr />
+          <CheckBox name="html_css" label="Belajar HTML & CSS" />
+          <hr />
+          <CheckBox name="js" label="Belajar JavaScript" />
+          <hr />
+          <CheckBox name="react_basic" label="Belajar ReactJS Dasar" />
+          <hr />
+          <CheckBox name="react_advance" label="Belajar ReactJS Advance" />
+        </main>
+      </div>
+    </>
   );
 }
 

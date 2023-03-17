@@ -15,3 +15,7 @@
 hr:first-of-type {
   border: 2px solid #212121;
 }
+
+.time {
+  text-align: center;
+}
