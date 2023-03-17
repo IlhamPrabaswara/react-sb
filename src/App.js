@@ -1,5 +1,6 @@
 import './App.css';
 import { useEffect, useState } from 'react';
+import CRUD from './components/crud';
 
 function CheckBox(props) {
   return (
@@ -54,6 +55,7 @@ function App() {
           <CheckBox name="react_advance" label="Belajar ReactJS Advance" />
         </main>
       </div>
+      <CRUD />
     </>
   );
 }
