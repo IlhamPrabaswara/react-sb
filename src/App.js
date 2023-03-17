@@ -15,16 +15,12 @@ function App() {
   const [timer, setTimer] = useState(10);
   function updateTime() {
     setTime(new Date().toLocaleTimeString());
+    setTimer(timer - 1);
   }
-  function updateTimer() {
-    if (timer >= 0) {
-      setTimer(timer - 1);
-    }
-  }
+
   useEffect(() => {
     if (timer !== 0) {
       setTimeout(updateTime, 1000);
-      setTimeout(updateTimer, 1000);
     }
   })
   return (
