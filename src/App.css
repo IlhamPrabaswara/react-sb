@@ -19,3 +19,22 @@ hr:first-of-type {
 .time {
   text-align: center;
 }
+
+.fruitTable {
+  border-collapse: collapse;
+}
+tr {
+  border-bottom: 1px solid #212121;
+}
+
+.formField {
+  display: flex;
+  margin-bottom: 15px;
+  justify-content: space-between;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
