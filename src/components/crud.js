@@ -13,6 +13,7 @@ export default function CRUD() {
     const [inputNamaBuah, setInputNamaBuah] = useState("");
     const [inputHargaBuah, setInputHargaBuah] = useState(0);
     const [inputBeratBuah, setInputBeratBuah] = useState(2000);
+    const [currentIndex, setCurrentIndex] = useState(-1);
     const handleNama = (e) => {
         setInputNamaBuah(e.target.value)
     }
@@ -24,7 +25,31 @@ export default function CRUD() {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        setListBuah([...listBuah, { nama: inputNamaBuah, hargaTotal: inputHargaBuah, beratTotal: inputBeratBuah }])
+        let newData = listBuah
+        if (currentIndex === -1) {
+            newData = [...listBuah, { nama: inputNamaBuah, hargaTotal: inputHargaBuah, beratTotal: inputBeratBuah }]
+        } else {
+            newData[currentIndex] = { nama: inputNamaBuah, hargaTotal: inputHargaBuah, beratTotal: inputBeratBuah }
+            setCurrentIndex(-1);
+        }
+        setListBuah(newData);
+        // setInputNamaBuah("");
+        // setInputBeratBuah(2000);
+        // setInputHargaBuah(0);
+    }
+    const handleDelete = (e) => {
+        let index = parseInt(e.target.value)
+        let deletedBuah = listBuah[index]
+        let deleteBuah = listBuah.filter((buah) => buah !== deletedBuah)
+        setListBuah(deleteBuah);
+    }
+    const handleEdit = (e) => {
+        let index = parseInt(e.target.value)
+        let editedBuah = listBuah[index]
+        setInputNamaBuah(editedBuah.nama)
+        setInputHargaBuah(editedBuah.hargaTotal)
+        setInputBeratBuah(editedBuah.beratTotal)
+        setCurrentIndex(index)
     }
     return (
         <>
@@ -51,8 +76,8 @@ export default function CRUD() {
                                     <td>{item.beratTotal / 1000} kg</td>
                                     <td>{item.hargaTotal / (item.beratTotal / 1000)}</td>
                                     <td>
-                                        <button>Edit</button>
-                                        <button>Delete</button>
+                                        <button value={index} onClick={handleEdit}>Edit</button>
+                                        <button value={index} onClick={handleDelete}>Delete</button>
                                     </td>
                                 </tr>
                             )
@@ -64,15 +89,15 @@ export default function CRUD() {
             <fieldset>
                 <form onSubmit={handleSubmit}>
                     <div className="formField">
-                        <label for="nama">Nama:</label>
+                        <label htmlFor="nama">Nama:</label>
                         <input required type="text" name="nama" value={inputNamaBuah} onChange={handleNama} />
                     </div>
                     <div className="formField">
-                        <label for="hargaTotal">Harga Total:</label>
+                        <label htmlFor="hargaTotal">Harga Total:</label>
                         <input required type="number" name="hargaTotal" value={inputHargaBuah} onChange={handleHarga} />
                     </div>
                     <div className="formField">
-                        <label for="beratTotal">Berat Total (dalam gram):</label>
+                        <label htmlFor="beratTotal">Berat Total (dalam gram):</label>
                         <input required min="2000" type="number" name="beratTotal" value={inputBeratBuah} onChange={handleBerat} />
                     </div>
                     <div className="formField">
