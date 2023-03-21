@@ -1,9 +1,10 @@
 .App {
-  max-width: 500px;
+  max-width: 700px;
   margin: 0 auto;
   margin-top: 20px;
   box-shadow: 0px 0px 15px #aaaaaa;
   padding:20px;
+  border-radius: 25px;
 }
 
 .App-logo {
@@ -20,8 +21,10 @@ hr:first-of-type {
   text-align: center;
 }
 
-.fruitTable {
+table {
+  margin: 0 auto 50px auto;
   border-collapse: collapse;
+  
 }
 tr {
   border-bottom: 1px solid #c2c7cf;
@@ -29,6 +32,7 @@ tr {
 th, td {
   padding-top: 5px;
   padding-bottom: 5px;
+  padding-right: 20px;
 }
 .formField {
   display: flex;
@@ -40,4 +44,6 @@ fieldset {
   display: flex;
   flex-direction: column;
   padding: 25px;
+  margin: 0 auto;
+  max-width: 600px;
 }

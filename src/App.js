@@ -1,6 +1,7 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import CRUD from './components/crud';
+import CRUDAxios from './components/crud-axios';
 
 function CheckBox(props) {
   return (
@@ -26,7 +27,7 @@ function App() {
   })
   return (
     <>
-      {
+      {/* {
         timer === 0 ?
           null
           :
@@ -34,12 +35,12 @@ function App() {
             <p>Now At - {time}</p>
             <p>Countdown: {timer}</p>
           </div>
-      }
+      } */}
 
       <div className="App">
-        <header className="App-header">
+        {/* <header className="App-header">
           <img src='logo.png' className="App-logo" alt="logo" />
-        </header>
+        </header> */}
         <main>
           {/* <h1> THINGS TO DO </h1>
           <p>During bootcamp in sanbercode</p>
@@ -52,8 +53,9 @@ function App() {
           <hr />
           <CheckBox name="react_basic" label="Belajar ReactJS Dasar" />
           <hr />
-          <CheckBox name="react_advance" label="Belajar ReactJS Advance" /> */}
-          <CRUD />
+          <CheckBox name="react_advance" label="Belajar ReactJS Advance" />
+          <CRUD /> */}
+          <CRUDAxios />
         </main>
       </div>
     </>

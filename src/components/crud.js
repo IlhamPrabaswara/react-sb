@@ -86,7 +86,7 @@ export default function CRUD() {
                 </tbody>
             </table>
             <h1>Form Daftar Harga Buah</h1>
-            <fieldset>
+            <fieldset className="inputForm">
                 <form onSubmit={handleSubmit}>
                     <div className="formField">
                         <label htmlFor="nama">Nama:</label>
