@@ -32,8 +32,7 @@ const CRUDAxios = () => {
     const handleDelete = (e) => {
         let ID_STUDENT = parseInt(e.target.value);
         axios.delete(`https://backendexample.sanbercloud.com/api/student-scores/${ID_STUDENT}`)
-            .then(res => {
-                let data = res.data;
+            .then(() => {
                 setStudent(student.filter((item) => item.id !== ID_STUDENT))
             })
     }
