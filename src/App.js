@@ -1,30 +1,32 @@
 import './App.css';
-import { useEffect, useState } from 'react';
-import CRUD from './components/crud';
+// import { useEffect, useState } from 'react';
+// import CRUD from './components/crud';
 import CRUDAxios from './components/crud-axios';
+import CRUDAxiosContext from './components/crud-axios-context';
+import { StudentProvider } from './components/studentContext';
 
-function CheckBox(props) {
-  return (
-    <>
-      <input type="checkbox" name={props.name} value={props.name}></input>
-      <label htmlFor="git_cli"> {props.label}</label>
-    </>
-  )
-}
+// function CheckBox(props) {
+//   return (
+//     <>
+//       <input type="checkbox" name={props.name} value={props.name}></input>
+//       <label htmlFor="git_cli"> {props.label}</label>
+//     </>
+//   )
+// }
 
 function App() {
-  const [time, setTime] = useState(new Date().toLocaleTimeString());
-  const [timer, setTimer] = useState(10);
-  function updateTime() {
-    setTime(new Date().toLocaleTimeString());
-    setTimer(timer - 1);
-  }
+  // const [time, setTime] = useState(new Date().toLocaleTimeString());
+  // const [timer, setTimer] = useState(10);
+  // function updateTime() {
+  //   setTime(new Date().toLocaleTimeString());
+  //   setTimer(timer - 1);
+  // }
 
-  useEffect(() => {
-    if (timer !== 0) {
-      setTimeout(updateTime, 1000);
-    }
-  })
+  // useEffect(() => {
+  //   if (timer !== 0) {
+  //     setTimeout(updateTime, 1000);
+  //   }
+  // })
   return (
     <>
       {/* {
@@ -55,7 +57,10 @@ function App() {
           <hr />
           <CheckBox name="react_advance" label="Belajar ReactJS Advance" />
           <CRUD /> */}
-          <CRUDAxios />
+          {/* <CRUDAxios /> */}
+          <StudentProvider>
+            <CRUDAxiosContext />
+          </StudentProvider>
         </main>
       </div>
     </>
