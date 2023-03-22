@@ -3,6 +3,10 @@ import axios from "axios";
 
 const CRUDAxios = () => {
     const [student, setStudent] = useState([]);
+    const [inputName, setInputName] = useState("");
+    const [inputCourse, setInputCourse] = useState("");
+    const [inputScore, setInputScore] = useState(0);
+    const [currentID, setCurrentID] = useState(null);
 
     useEffect(() => {
         const getStudent = async () => {
@@ -14,12 +18,48 @@ const CRUDAxios = () => {
         getStudent();
     }, [])
 
-    const handleEdit = () => {
+    const handleEdit = (e) => {
+        let ID_STUDENT = e.target.value;
+        axios.get(`https://backendexample.sanbercloud.com/api/student-scores/${ID_STUDENT}`)
+            .then(res => {
+                let data = res.data;
+                setInputName(data.name);
+                setInputCourse(data.course);
+                setInputScore(data.score);
+                setCurrentID(data.id);
+            })
+    }
+    const handleDelete = (e) => {
+        let ID_STUDENT = parseInt(e.target.value);
+        axios.delete(`https://backendexample.sanbercloud.com/api/student-scores/${ID_STUDENT}`)
+            .then(res => {
+                let data = res.data;
+                setStudent(student.filter((item) => item.id !== ID_STUDENT))
+            })
+    }
+    const handleSubmit = (e) => {
+        if (currentID === null) {
+            axios.post(`https://backendexample.sanbercloud.com/api/student-scores`, { name: inputName, course: inputCourse, score: inputScore })
+                .then((res) => {
+                    let data = res.data
+                    setStudent([...student, { id: data.id, name: data.name, course: data.course, score: data.score }])
+                })
+        } else {
+            axios.put(`https://backendexample.sanbercloud.com/api/student-scores/${currentID}`, { name: inputName, course: inputCourse, score: inputScore })
+                .then((res) => {
+                    let updateStudent = student.find((el) => el.id === currentID)
+                    updateStudent.name = inputName;
+                    updateStudent.course = inputCourse;
+                    updateStudent.score = inputScore;
+                    setStudent([...student])
+                })
+        }
+        setInputName("");
+        setInputCourse("");
+        setInputScore(0);
+        setCurrentID(null);
+    }
 
-    }
-    const handleDelete = () => {
-        
-    }
     return (
         <>
             <h1>CRUD Axios</h1>
@@ -52,6 +92,28 @@ const CRUDAxios = () => {
                     )}
                 </tbody>
             </table>
+            <h1>Student Form</h1>
+            <fieldset>
+
+                <form onSubmit={handleSubmit}>
+                    <div className="formField">
+                        <label htmlFor="nama">Name:</label>
+                        <input required type="text" name="nama" value={inputName} onChange={e => setInputName(e.target.value)} />
+                    </div>
+                    <div className="formField">
+                        <label htmlFor="course">Course:</label>
+                        <input required type="text" name="course" value={inputCourse} onChange={e => setInputCourse(e.target.value)} />
+                    </div>
+                    <div className="formField">
+                        <label htmlFor="score">Score:</label>
+                        <input required type="number" name="score" value={inputScore} onChange={e => setInputScore(e.target.value)} />
+                    </div>
+                    <div className="formField">
+                        <label></label>
+                        <button>Submit</button>
+                    </div>
+                </form>
+            </fieldset>
         </>
     )
 }
