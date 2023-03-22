@@ -3,6 +3,7 @@ import './App.css';
 // import CRUD from './components/crud';
 import CRUDAxios from './components/crud-axios';
 import CRUDAxiosContext from './components/crud-axios-context';
+import Routers from './components/routers';
 import { StudentProvider } from './components/studentContext';
 
 // function CheckBox(props) {
@@ -40,6 +41,7 @@ function App() {
       } */}
 
       <div className="App">
+        <Routers />
         {/* <header className="App-header">
           <img src='logo.png' className="App-logo" alt="logo" />
         </header> */}
@@ -57,10 +59,10 @@ function App() {
           <hr />
           <CheckBox name="react_advance" label="Belajar ReactJS Advance" />
           <CRUD /> */}
-          {/* <CRUDAxios /> */}
+          {/* <CRUDAxios />
           <StudentProvider>
             <CRUDAxiosContext />
-          </StudentProvider>
+          </StudentProvider> */}
         </main>
       </div>
     </>

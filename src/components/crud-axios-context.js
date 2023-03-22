@@ -70,7 +70,7 @@ const CRUDAxiosContext = () => {
 
     return (
         <>
-            <h1>CRUD Axios</h1>
+            <h1>CRUD Axios with Context</h1>
             <table>
                 <thead>
                     <tr>
